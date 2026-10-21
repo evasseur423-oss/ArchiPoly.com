@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArchiPoly Studio — Suite 3D locale & open-source pour architectes</title>
+  <meta name="description" content="ArchiPoly Studio est la suite 3D open-source pour l'architecture. Écosystème unifié, 100% hors-ligne, sans abonnement, conçu pour les étudiants et praticiens de l'architecture.">
+  <meta name="keywords" content="architecture, 3D, open-source, CAO, PBR textures, découpe laser, maquette slicer, RDM, thermique, GLB viewer">
+  <meta name="author" content="ArchiPoly Studio">
+
+  <!-- Open Graph / Meta Réseaux Sociaux -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ArchiPoly Studio — Suite 3D locale & open-source pour architectes">
+  <meta property="og:description" content="La boîte à outils 3D locale et open-source pour les architectes. 100% hors-ligne, ultra-légère et sans abonnement.">
+  <meta property="og:image" content="https://archipoly.github.io/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/icon.png">
+</head>
+<body>
+
+  <!-- Trame de fond architecturale / Isometric CAD Grid -->
+  <div class="cad-grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Barre de navigation supérieure (Navbar fixe) -->
+  <header class="site-header" id="navbar">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" id="nav-brand" aria-label="Retour au sommet - ArchiPoly">
+        <img class="brand-icon" src="images/icon.png" alt="" aria-hidden="true">
+        <span class="brand-name">ARCHIPOLY <span class="brand-sub">STUDIO</span></span>
+      </a>
+
+      <!-- Navigation principale -->
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <ul class="nav-links">
+          <li>
+            <a href="#modules" class="nav-link" id="nav-link-modules">
+              <span class="nav-mono">01.</span> Fonctionnalités
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link" id="nav-link-about">
+              <span class="nav-mono">02.</span> À Propos
+            </a>
+          </li>
+          <li>
+            <a href="#download-section" class="nav-link" id="nav-link-source">
+              <span class="nav-mono">03.</span> Code Source
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Actions Navbar -->
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="Choix de la langue">
+          <button class="language-button active" type="button" data-language="fr" aria-pressed="true">FR</button>
+          <button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="https://github.com/archipoly/archipoly-studio" target="_blank" rel="noopener noreferrer" class="btn-ghost-nav" id="nav-github-link" title="Dépôt GitHub">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a href="#download-section" class="btn-primary-nav" id="nav-download-btn">
+          <span>Télécharger</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon" aria-hidden="true">
+            <path d="M8 2v9m0 0l-3.5-3.5M8 11l3.5-3.5M3 14h10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="donation-nav-link" href="https://buy.stripe.com/00w28r2WOdr2gZYbsRaAw0K" target="_blank" rel="noopener noreferrer" aria-label="Faire un don libre via Stripe" title="Faire un don libre via Stripe">
+          <svg class="donation-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 17s-7-4.35-7-9a4 4 0 0 1 7-2.65A4 4 0 0 1 17 8c0 4.65-7 9-7 9Z"/>
+            <path d="M7.5 10h5M10 7.5v5"/>
+          </svg>
+          <span>Don</span>
+        </a>
+
+        <!-- Bouton mobile menu burger -->
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION HERO -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        
+        <!-- En-tête de la Hero Section -->
+        <div class="hero-badge-tag" data-reveal>
+          <span class="status-indicator"></span>
+          <span class="badge-code">SYS.ARCH // LOCAL-FIRST v1.0</span>
+        </div>
+
+        <h1 class="hero-title" data-reveal>
+          La boîte à outils 3D locale et open-source pour les architectes.
+        </h1>
+
+        <p class="hero-description" data-reveal>
+          Un écosystème unifié, sans abonnement, ultra-léger et fonctionnant à 100% hors-ligne. 
+          De la préparation des matériaux photoréalistes jusqu'à la découpe de maquette physique et aux calculs pré-dimensionnels, 
+          reprenez le contrôle de vos flux de travail sans dépendance au cloud.
+        </p>
+
+        <!-- CTA Principal et métadonnées -->
+        <div class="hero-cta-group" data-reveal>
+          <a href="#download-section" class="btn-hero-download" id="hero-cta-btn">
+            <svg class="win-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.949-1.558L24 0v11.551H10.949V1.891zM0 12.551h9.75v9.451L0 20.651v-8.1zm10.949 0H24V24l-13.051-1.891V12.551z"/>
+            </svg>
+            <div class="btn-text-wrap">
+              <span class="btn-label-action">Télécharger pour Windows</span>
+              <span class="btn-label-sub">ArchiPoly-Setup-1.0.0.exe • 64-bit (~84 Mo)</span>
+            </div>
+            <svg class="download-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a href="https://github.com/archipoly/archipoly-studio" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary" id="hero-github-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="source-icon" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>Explorer le code source</span>
+          </a>
+        </div>
+
+        <!-- Badge Technique Discret -->
+        <div class="hero-tech-badge" data-reveal>
+          <span class="badge-item">Version 1.0 (Expérimentale)</span>
+          <span class="badge-sep">•</span>
+          <span class="badge-item">Développé avec l'assistance de l'IA</span>
+          <span class="badge-sep">•</span>
+          <span class="badge-item">Licence GPLv3</span>
+        </div>
+
+        <!-- Capture de l'interface ArchiPoly Studio -->
+        <div class="app-preview-frame" data-reveal>
+          <img class="app-preview-image" src="images/Capture d'écran 2026-10-21 103843.png" alt="Capture d’écran d’ArchiPoly Studio avec le modèle 3D et les résultats de calcul ArchPhysics">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION MODULES (ÉCOSYSTÈME EN 5 MODULES) -->
+    <section class="modules-section" id="modules">
+      <div class="section-container">
+        
+        <div class="section-heading" data-reveal>
+          <div class="section-kicker">
+            <span class="kicker-line"></span>
+            <span class="kicker-text">ARCHITECTURE SYSTEM SUITE</span>
+          </div>
+          <h2 class="section-title">Un écosystème en 5 modules</h2>
+          <p class="section-subtitle">
+            Chaque outil a été conçu pour éliminer une friction récurrente en agence ou en atelier d'architecture. 
+            Aucun compte requis, aucune latence réseau, vos modèles restent strictement sur votre machine.
+          </p>
+        </div>
+
+        <!-- Grille des 5 Cartes de Modules -->
+        <div class="modules-grid">
+          
+          <!-- MODULE 01 : Material Library -->
+          <article class="module-card" data-reveal id="module-material-library">
+            <div class="card-edge-glow"></div>
+            <div class="card-top-meta">
+              <span class="module-number">01</span>
+              <span class="module-tag">TEXTURING & SHADERS</span>
+            </div>
+            
+            <div class="module-icon-wrapper">
+              <img class="module-image-icon" src="images/icon.png.ico" alt="" aria-hidden="true">
+            </div>
+
+            <h3 class="module-name">Material Library</h3>
+            <p class="module-lead">Gestionnaire de textures PBR.</p>
+            <p class="module-description">
+              Organisez vos bibliothèques locales, visualisez vos matériaux sur 4 gabarits 3D et normalisez automatiquement la nomenclature de vos fichiers.
+            </p>
+
+            <div class="card-footer-tags">
+              <span class="tech-pill">Sphere / Cloth / Cube</span>
+              <span class="tech-pill">Auto-Rename</span>
+              <span class="tech-pill">PBR Channels</span>
+            </div>
+          </article>
+
+          <!-- MODULE 02 : 3D Inspector -->
+          <article class="module-card" data-reveal id="module-3d-inspector">
+            <div class="card-edge-glow"></div>
+            <div class="card-top-meta">
+              <span class="module-number">02</span>
+              <span class="module-tag">CAD VIEWPORT</span>
+            </div>
+            
+            <div class="module-icon-wrapper">
+              <img class="module-image-icon" src="images/icon.ico" alt="" aria-hidden="true">
+            </div>
+
+            <h3 class="module-name">3D Inspector</h3>
+            <p class="module-lead">Visionneuse universelle rapide (GLB, OBJ, FBX, STL).</p>
+            <p class="module-description">
+              Inspectez le maillage filaire, vérifiez l'étirement des UVs avec un damier procédural, et gérez la visibilité de vos calques.
+            </p>
+
+            <div class="card-footer-tags">
+              <span class="tech-pill">GLB • FBX • OBJ • STL</span>
+              <span class="tech-pill">UV Checker</span>
+              <span class="tech-pill">Wireframe</span>
+            </div>
+          </article>
+
+          <!-- MODULE 03 : PBR Alchemist -->
+          <article class="module-card" data-reveal id="module-pbr-alchemist">
+            <div class="card-edge-glow"></div>
+            <div class="card-top-meta">
+              <span class="module-number">03</span>
+              <span class="module-tag">TEXTURE SYNTHESIS</span>
+            </div>
+            
+            <div class="module-icon-wrapper">
+              <img class="module-image-icon" src="images/icon (1).ico" alt="" aria-hidden="true">
+            </div>
+
+            <h3 class="module-name">PBR Alchemist</h3>
+            <p class="module-lead">Laboratoire de création.</p>
+            <p class="module-description">
+              Glissez une simple photo de site (béton, bois) et l'algorithme génère des textures sans couture (Seamless) en extrayant les cartes Normal, Roughness, Height et AO.
+            </p>
+
+            <div class="card-footer-tags">
+              <span class="tech-pill">Seamless Tiling</span>
+              <span class="tech-pill">Normal / Roughness / AO</span>
+              <span class="tech-pill">Photogrammétrie</span>
+            </div>
+          </article>
+
+          <!-- MODULE 04 : Maquette Slicer -->
+          <article class="module-card" data-reveal id="module-maquette-slicer">
+            <div class="card-edge-glow"></div>
+            <div class="card-top-meta">
+              <span class="module-number">04</span>
+              <span class="module-tag">PHYSICAL FABRICATION</span>
+            </div>
+            
+            <div class="module-icon-wrapper">
+              <img class="module-image-icon" src="images/icon (2).ico" alt="" aria-hidden="true">
+            </div>
+
+            <h3 class="module-name">Maquette Slicer</h3>
+            <p class="module-lead">De la 3D à la découpe physique.</p>
+            <p class="module-description">
+              Tranchez n'importe quelle topographie ou volume selon une échelle architecturale (1:50, 1:200) et exportez vos patrons de découpe numérotés en SVG et DXF.
+            </p>
+
+            <div class="card-footer-tags">
+              <span class="tech-pill">Laser & CNC Ready</span>
+              <span class="tech-pill">Export DXF / SVG</span>
+              <span class="tech-pill">Échelles 1:20 à 1:500</span>
+            </div>
+          </article>
+
+          <!-- MODULE 05 : ArchPhysics -->
+          <article class="module-card card-highlighted" data-reveal id="module-archphysics">
+            <div class="card-edge-glow"></div>
+            <div class="card-top-meta">
+              <span class="module-number">05</span>
+              <span class="module-tag">ENGINEERING & RDM</span>
+            </div>
+            
+            <div class="module-icon-wrapper">
+              <img class="module-image-icon" src="images/icon_1.ico" alt="" aria-hidden="true">
+            </div>
+
+            <h3 class="module-name">ArchPhysics</h3>
+            <p class="module-lead">Laboratoire de pré-dimensionnement.</p>
+            <p class="module-description">
+              Calculez les déperditions thermiques d'une pièce fermée et vérifiez la flèche (RDM) de vos poutres porteuses instantanément sur la géométrie 3D.
+            </p>
+
+            <div class="card-footer-tags">
+              <span class="tech-pill">Flèche Eurocode (L/500)</span>
+              <span class="tech-pill">Bilan Thermique U</span>
+              <span class="tech-pill">Temps Réel</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION TRANSPARENCE, RETOURS & OPEN-SOURCE -->
+    <section class="opensource-section" id="open-source">
+      <div class="section-container">
+        
+        <div class="transparency-card" data-reveal id="about">
+          
+          <div class="transparency-badge">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" class="badge-icon" aria-hidden="true">
+              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM10 9v5m0-8h.01" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>DÉMARCHE D'ATELIER & TRANSPARENCE</span>
+          </div>
+
+          <h2 class="transparency-title">
+            Conçu par un étudiant en architecture, pour les étudiants en architecture.
+          </h2>
+
+          <div class="transparency-content">
+            <p>
+              Ce projet est né lors de la banalisation des cours en école d'architecture en France (ENSA Nantes). Suite à un atelier discussion autour des logiciels Open source.
+              En atelier de projet d'architecture, la majorité des suites logicielles propriétaires imposent des abonnements mensuels exorbitants, 
+              nécessitent une connexion Internet permanente, et s'avèrent souvent trop lourdes pour des vérifications élémentaires : 
+              nettoyer des fichiers OBJ, préparer un gabarit de découpe laser ou tester la faisabilité d'une poutre en bois.
+              L'objectif de ce projet est de fournir un outil léger, rapide et local-first essentiellement pour les étudiants d'architecture, mais aussi pour les 3D modellers, les architectes praticiens etc.
+              C'est surtout une réponse au géant des logiciels propriétaires qui peuvent désormais s'inquiéter de la montée en puissance des outils d'intelligence artificielle et de la communauté open-source.
+            </p>
+            <p>
+              <strong>ArchiPoly Studio est né pour répondre à ces frictions réelles du quotidien.</strong> 
+              Ce logiciel est actuellement en <em>phase de test et d'expérimentation</em> (Version 1.0). 
+              Le projet a été développé en combinant passion architecturale et assistance par intelligence artificielle pour le prototypage rapide d'algorithmes géométriques.
+            </p>
+            <p class="highlight-callout">
+              Votre regard compte énormément. Que vous soyez étudiant, architecte praticien, enseignant ou développeur : 
+              laissez un avis, signalez un bug ou partagez vos suggestions via notre formulaire.
+            </p>
+          </div>
+
+          <!-- Grille des engagements éthiques -->
+          <div class="commitments-grid">
+            <div class="commitment-item">
+              <div class="c-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2e66e6" stroke-width="2" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div class="c-text">
+                <h4>100% Confidentialité Locale</h4>
+                <p>Aucune télémétrie intrusive, aucune donnée client envoyée sur un serveur distant.</p>
+              </div>
+            </div>
+
+            <div class="commitment-item">
+              <div class="c-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2e66e6" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="c-text">
+                <h4>Zéro Abonnement</h4>
+                <p>Libre d'accès sous licence GPLv3. Gratuit pour toujours pour les écoles et les agences.</p>
+              </div>
+            </div>
+
+            <div class="commitment-item">
+              <div class="c-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2e66e6" stroke-width="2" aria-hidden="true">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+              </div>
+              <div class="c-text">
+                <h4>Code Source Ouvert</h4>
+                <p>Auditez, modifiez, forkez et contribuez librement à l'ensemble du dépôt public.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section d'action finale -->
+          <div class="transparency-actions" id="download-section">
+            <a href="https://github.com/archipoly/archipoly-studio/releases/latest" class="btn-primary-action" id="final-download-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="btn-svg" aria-hidden="true">
+                <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm10.949-1.558L24 0v11.551H10.949V1.891zM0 12.551h9.75v9.451L0 20.651v-8.1zm10.949 0H24V24l-13.051-1.891V12.551z"/>
+              </svg>
+              <div class="btn-lines">
+                <span class="btn-title">Télécharger l'exécutable (.exe)</span>
+                <span class="btn-sub">Windows 10 / 11 (64 bits) • Version 1.0</span>
+              </div>
+            </a>
+
+            <a href="https://github.com/archipoly/archipoly-studio" target="_blank" rel="noopener noreferrer" class="btn-secondary-action" id="final-github-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-svg" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <div class="btn-lines">
+                <span class="btn-title">Voir le code source (GitHub)</span>
+                <span class="btn-sub">Issues, Pull Requests & Roadmap</span>
+              </div>
+            </a>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWAk4qhgMxmRA1Wajv-wVvZdUaFBtIJnc47Psp6ZVpkDfb8w/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn-secondary-action" id="feedback-form-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-svg" aria-hidden="true">
+                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/>
+                <path d="m8 12 2.5 2.5L16 9"/>
+              </svg>
+              <div class="btn-lines">
+                <span class="btn-title">Laisser un avis / signaler un bug</span>
+                <span class="btn-sub">Ouvrir le formulaire de retours</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Notification Toast Téléchargement -->
+          <div class="download-toast" id="download-toast" role="alert" aria-live="assertive">
+            <svg viewBox="0 0 20 20" fill="none" stroke="#2e66e6" stroke-width="2" class="toast-icon">
+              <path d="M10 2v10m0 0l-3-3m3 3l3-3M4 16h12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="toast-text">
+              <strong>Redirection vers la dernière Release GitHub...</strong>
+              <span>Le binaire ArchiPoly-Setup-1.0.0.exe se télécharge directement depuis les serveurs officiels.</span>
+            </div>
+            <button class="toast-close" id="toast-close-btn" aria-label="Fermer la notification">&times;</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- PIED DE PAGE TECHNIQUE ARCHITECTURAL -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img class="f-icon" src="images/icon.png" alt="" aria-hidden="true">
+            <span class="f-name">ARCHIPOLY STUDIO</span>
+          </div>
+          <p class="f-tagline">
+            Suite 3D indépendante pour l'expérimentation, la découpe physique et la conception architecturale.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="f-col">
+            <span class="f-col-title">MODULES</span>
+            <ul>
+              <li><a href="#module-material-library">01. Material Library</a></li>
+              <li><a href="#module-3d-inspector">02. 3D Inspector</a></li>
+              <li><a href="#module-pbr-alchemist">03. PBR Alchemist</a></li>
+              <li><a href="#module-maquette-slicer">04. Maquette Slicer</a></li>
+              <li><a href="#module-archphysics">05. ArchPhysics</a></li>
+            </ul>
+          </div>
+
+          <div class="f-col">
+            <span class="f-col-title">COMMUNAUTÉ</span>
+            <ul>
+              <li><a href="https://github.com/archipoly/archipoly-studio" target="_blank" rel="noopener noreferrer">Dépôt GitHub</a></li>
+              <li><a href="https://github.com/archipoly/archipoly-studio/issues" target="_blank" rel="noopener noreferrer">Signaler un bug (Issues)</a></li>
+              <li><a href="https://github.com/archipoly/archipoly-studio/releases" target="_blank" rel="noopener noreferrer">Notes de version</a></li>
+              <li><a href="https://github.com/archipoly/archipoly-studio/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licence GPLv3</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">
+          <span>&copy; <span id="current-year">2026</span> ArchiPoly Studio. Open-source sous licence GPLv3.</span>
+        </div>
+        <div class="system-meta">
+          <span class="meta-tag">BUILD : 1.0.0-RELEASE</span>
+          <span class="meta-sep">•</span>
+          <span class="meta-tag">SYS : WIN-X64</span>
+          <span class="meta-sep">•</span>
+          <span class="meta-tag">CAD : METRIC / SI</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
