@@ -592,32 +592,19 @@ button {
 }
 
 .windows-install-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  width: min(100%, 760px);
-  margin: -8px auto 24px;
-  padding: 12px 16px;
-  color: var(--text-secondary);
-  background-color: rgba(22, 23, 26, 0.55);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  text-align: left;
-  font-size: 0.82rem;
-  line-height: 1.6;
-}
-
-.windows-install-note-icon {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  margin-top: 3px;
+  width: min(100%, 720px);
+  margin: -10px auto 20px;
+  padding: 2px 10px;
   color: var(--text-muted);
+  border-left: 1px solid var(--border-technical);
+  text-align: left;
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
 
 .windows-install-note strong {
-  color: var(--text-light-dim);
-  font-weight: 600;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .source-icon {
