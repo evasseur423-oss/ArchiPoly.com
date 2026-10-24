@@ -15,13 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
     'Code Source': 'Source Code',
     'Télécharger': 'Download',
     'Don': 'Donate',
-    'ArchiPoly-Setup-1.0.0.exe • 64-bit (~84 Mo)': 'ArchiPoly-Setup-1.0.0.exe • 64-bit (~84 MB)',
-    'Windows 10 / 11 (64 bits) • Version 1.0': 'Windows 10 / 11 (64-bit) • Version 1.0',
-    "Note d'installation Windows :": 'Windows installation note:',
-    "Si Microsoft Defender SmartScreen affiche un écran bleu de protection, cliquez simplement sur 'Informations complémentaires' puis sur 'Exécuter quand même'. ArchiPoly Studio est un logiciel libre et gratuit (open source) sans certificat commercial payant. Le code est 100 % auditable sur GitHub.": "If Microsoft Defender SmartScreen displays a blue protection screen, click 'More info' and then 'Run anyway'. ArchiPoly Studio is free and open-source software without a paid commercial certificate. The code is 100% auditable on GitHub.",
-    'La boîte à outils 3D locale et open-source pour les architectes.': 'The local, open-source 3D toolkit for architects.',
-    "Un écosystème unifié, sans abonnement, ultra-léger et fonctionnant à 100% hors-ligne. De la préparation des matériaux photoréalistes jusqu'à la découpe de maquette physique et aux calculs pré-dimensionnels, reprenez le contrôle de vos flux de travail sans dépendance au cloud.": 'A unified, subscription-free ecosystem that is lightweight and works entirely offline. From preparing photorealistic materials to cutting physical models and preliminary calculations, take control of your workflow without relying on the cloud.',
     'Télécharger pour Windows': 'Download for Windows',
+    'ArchiPoly-Setup-1.0.0.exe • 64-bit (~84 Mo)': 'ArchiPoly-Setup-1.0.0.exe • 64-bit (~84 MB)',
+    'Télécharger pour macOS': 'Download for macOS',
+    'ArchiPoly-1.0.0-arm64.dmg • Apple Silicon (~116 Mo)': 'ArchiPoly-1.0.0-arm64.dmg • Apple Silicon (~116 MB)',
+    'Télécharger pour Windows (.exe)': 'Download for Windows (.exe)',
+    'Télécharger pour macOS (.dmg)': 'Download for macOS (.dmg)',
+    'Apple Silicon (M1/M2/M3/M4) • SHA256 vérifié': 'Apple Silicon (M1/M2/M3/M4) • SHA256 verified',
+    'SHA-256 (macOS arm64) :': 'SHA-256 (macOS arm64):',
+    'Copier': 'Copy',
+    'Windows': 'Windows',
+    'macOS': 'macOS',
+    "Note d'installation :": 'Installation note:',
+    "Si SmartScreen affiche un écran bleu, cliquez sur 'Informations complémentaires' puis 'Exécuter quand même'. Logiciel libre sans certificat payant.": "If SmartScreen displays a blue screen, click 'More info' and then 'Run anyway'. Free software without a paid certificate.",
+    "Si macOS signale une application d'un développeur non vérifié, faites Clic droit > 'Ouvrir', ou dans le Terminal :": "If macOS reports an unverified developer, right-click > 'Open', or run in Terminal:",
+    "Le paquet d'installation est téléchargé depuis GitHub Releases.": 'The installer package is downloaded from GitHub Releases.',
     'Explorer le code source': 'Explore the source code',
     'Version 1.0 (Expérimentale)': 'Version 1.0 (Experimental)',
     "Développé avec l'assistance de l'IA": 'Developed with AI assistance',
@@ -77,12 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
     'ArchiPoly Studio. Open-source sous licence GPLv3.': 'ArchiPoly Studio. Open source under the GPLv3 license.',
     'Don libre': 'Donate',
     'BUILD : 1.0.0-RELEASE': 'BUILD: 1.0.0-RELEASE',
+    'SYS : WIN-X64 / MAC-ARM64': 'SYS : WIN-X64 / MAC-ARM64',
     'SYS : WIN-X64': 'SYS: WIN-X64',
     'CAD : METRIC / SI': 'CAD: METRIC / SI'
   };
   const attributeTranslations = {
     'Retour au sommet - ArchiPoly': 'Back to top - ArchiPoly',
     'Choix de la langue': 'Choose language',
+    "Note d'installation Windows": 'Windows installation note',
+    "Note d'installation macOS": 'macOS installation note',
+    "Copier l'empreinte SHA-256": 'Copy SHA-256 checksum',
+    "Copier le SHA-256": 'Copy SHA-256',
     'Navigation principale': 'Main navigation',
     "Note d'installation Windows": 'Windows installation note',
     'Dépôt GitHub': 'GitHub repository',
@@ -230,14 +243,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   const downloadToast = document.getElementById('download-toast');
   const toastCloseBtn = document.getElementById('toast-close-btn');
+  const toastTitle = document.getElementById('toast-title');
+  const toastDesc = document.getElementById('toast-desc');
   const downloadButtons = [
-    document.getElementById('final-download-btn'),
-    document.getElementById('hero-cta-btn'),
-    document.getElementById('nav-download-btn')
+    { el: document.getElementById('final-download-btn'), os: 'win' },
+    { el: document.getElementById('hero-cta-btn'), os: 'win' },
+    { el: document.getElementById('final-download-mac-btn'), os: 'mac' },
+    { el: document.getElementById('hero-cta-mac-btn'), os: 'mac' },
+    { el: document.getElementById('nav-download-btn'), os: 'nav' }
   ];
 
-  function showDownloadToast() {
+  function showDownloadToast(os) {
     if (downloadToast) {
+      const isEnglish = document.documentElement.lang === 'en';
+      if (toastTitle && toastDesc) {
+        if (os === 'mac') {
+          toastTitle.textContent = isEnglish
+            ? 'ArchiPoly for macOS is downloading...'
+            : 'Téléchargement d’ArchiPoly pour macOS en cours...';
+          toastDesc.textContent = isEnglish
+            ? 'Package ArchiPoly-1.0.0-arm64.dmg (Apple Silicon). SHA-256 verified.'
+            : 'Paquet ArchiPoly-1.0.0-arm64.dmg (Apple Silicon). SHA-256 vérifié.';
+        } else {
+          toastTitle.textContent = isEnglish
+            ? 'ArchiPoly is downloading...'
+            : 'Téléchargement d’ArchiPoly en cours...';
+          toastDesc.textContent = isEnglish
+            ? 'The installer ArchiPoly Setup 1.0.0.exe is downloading from GitHub Releases.'
+            : 'Le programme d’installation ArchiPoly Setup 1.0.0.exe est téléchargé depuis GitHub Releases.';
+        }
+      }
       downloadToast.classList.add('show');
       // Masquer automatiquement après 7 secondes
       setTimeout(() => {
@@ -252,20 +287,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  downloadButtons.forEach(btn => {
-    if (btn) {
-      btn.addEventListener('click', (e) => {
+  downloadButtons.forEach(({ el, os }) => {
+    if (el) {
+      el.addEventListener('click', (e) => {
         // Si le bouton mène à une ancre (#download-section), on ne bloque pas le scroll
-        const href = btn.getAttribute('href');
+        const href = el.getAttribute('href');
         if (href && href.startsWith('#')) {
           // Laisse le smooth-scroll opérer
         } else {
           // Si lien externe vers la release
-          showDownloadToast();
+          showDownloadToast(os);
         }
       });
     }
   });
+
+  // Copie de l'empreinte SHA-256
+  const copyChecksumBtn = document.getElementById('copy-checksum-btn');
+  if (copyChecksumBtn) {
+    copyChecksumBtn.addEventListener('click', async () => {
+      const checksumVal = '5260a423b40e12aba3b45df7a5e5a1146a57d618ed143185b5454394b8586f1a';
+      try {
+        await navigator.clipboard.writeText(checksumVal);
+        const copyText = copyChecksumBtn.querySelector('.copy-text');
+        if (copyText) {
+          const original = copyText.textContent;
+          copyText.textContent = document.documentElement.lang === 'en' ? 'Copied!' : 'Copié !';
+          copyChecksumBtn.classList.add('copied');
+          setTimeout(() => {
+            copyText.textContent = original;
+            copyChecksumBtn.classList.remove('copied');
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Erreur lors de la copie', err);
+      }
+    });
+  }
 
   // --------------------------------------------------------------------------
   // 05. ANIMATION D'APPARITION AU DÉFILEMENT (INTERSECTION OBSERVER)
