@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Visualizer — ArchiPoly Studio</title>
+  <meta name="description"
+    content="Découvrez 3D Visualizer, l'outil ArchiPoly pour ouvrir et inspecter rapidement des modèles 3D aux formats GLB, OBJ, FBX et STL.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/icon.png">
+</head>
+
+<body>
+  <div class="cad-grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="navbar">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" aria-label="Retour à ArchiPoly Studio">
+        <img class="brand-icon" src="images/icon.png" alt="" aria-hidden="true">
+        <span class="brand-name">ARCHIPOLY <span class="brand-sub">STUDIO</span></span>
+      </a>
+      <nav class="slicer-page-nav" aria-label="Navigation de la page 3D Visualizer">
+        <a href="#outil">L’outil</a>
+        <a href="#captures">Captures</a>
+        <a href="#telechargement">Téléchargements</a>
+        <a href="index.html">Accueil</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="slicer-detail-page">
+    <section class="slicer-detail-hero">
+      <div class="section-container">
+        <div class="hero-badge-tag" data-reveal>
+          <span class="status-indicator"></span>
+          <span class="badge-code">OUTIL 02 // VISUALISATION 3D</span>
+        </div>
+        <img class="slicer-detail-logo" src="images/icon.ico" alt="Logo 3D Visualizer">
+        <h1 class="slicer-detail-title" data-reveal>3D Visualizer</h1>
+        <p class="slicer-detail-lead" data-reveal>
+          Ouvrez et inspectez rapidement vos modèles 3D dans une visionneuse légère, sans interrompre votre flux de travail.
+        </p>
+        <p class="slicer-detail-copy" data-reveal>
+          Visualisez les formats GLB, OBJ, FBX et STL, contrôlez le maillage, les UV et les calques depuis une interface
+          pensée pour les vérifications rapides en atelier.
+        </p>
+        <div class="slicer-detail-actions" data-reveal>
+          <a class="btn-primary-action"
+            href="https://github.com/evasseur423-oss/3D-Visualizer/releases/download/3D-visualizer-v1/3D.Visualizer.Studio.Setup.1.0.0.exe"
+            download="3D.Visualizer.Studio.Setup.1.0.0.exe">
+            Télécharger pour Windows
+          </a>
+          <a class="btn-secondary-action"
+            href="https://github.com/evasseur423-oss/3D-Visualizer/releases/download/3D-visualizer-MAC/3D.Visualizer.Studio-1.0.0-arm64.dmg"
+            download="3D.Visualizer.Studio-1.0.0-arm64.dmg">
+            Télécharger pour macOS
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="slicer-detail-section" id="positionnement">
+      <div class="section-container">
+        <div class="slicer-format-note" data-reveal>
+          <span class="slicer-format-label">ARCHIPOLY RESTE À VOS CÔTÉS</span>
+          <p>
+            <strong>ArchiPoly continue d’exister comme boîte à outils.</strong>
+            Elle permet de lancer et tester rapidement chaque logiciel depuis un même point d’entrée.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slicer-detail-section" id="outil">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <div class="section-kicker">
+            <span class="kicker-line"></span>
+            <span class="kicker-text">INSPECTION DE MODÈLES</span>
+          </div>
+          <h2 class="section-title">L’essentiel pour vérifier une scène 3D</h2>
+          <p class="section-subtitle">
+            Examinez un modèle, ses surfaces et son organisation avant de le transmettre ou de l’intégrer à votre projet.
+          </p>
+        </div>
+
+        <div class="slicer-feature-grid">
+          <article class="slicer-feature-card" data-reveal>
+            <span class="slicer-feature-number">01</span>
+            <h3>Ouvrez vos formats 3D</h3>
+            <p>Chargez vos fichiers GLB, OBJ, FBX ou STL dans une visionneuse dédiée aux contrôles rapides.</p>
+          </article>
+          <article class="slicer-feature-card" data-reveal>
+            <span class="slicer-feature-number">02</span>
+            <h3>Contrôlez le maillage et les UV</h3>
+            <p>Activez le mode filaire et le damier UV pour repérer les problèmes de géométrie ou de dépliage.</p>
+          </article>
+          <article class="slicer-feature-card" data-reveal>
+            <span class="slicer-feature-number">03</span>
+            <h3>Organisez la scène</h3>
+            <p>Inspectez les calques et contrôlez leur visibilité pour examiner les différentes parties du modèle.</p>
+          </article>
+        </div>
+
+        <div class="slicer-format-note" data-reveal>
+          <span class="slicer-format-label">FORMATS PRIS EN CHARGE</span>
+          <p><strong>GLB · OBJ · FBX · STL</strong> · Inspection du maillage, des UV et des calques</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slicer-detail-section slicer-gallery-section" id="captures">
+      <div class="section-container slicer-featured-container">
+        <div class="section-heading" data-reveal>
+          <div class="section-kicker">
+            <span class="kicker-line"></span>
+            <span class="kicker-text">APERÇU DE L’APPLICATION</span>
+          </div>
+          <h2 class="section-title">3D Visualizer en images</h2>
+          <p class="section-subtitle">Vue de l’inspection d’un modèle 3D et des outils de visualisation.</p>
+        </div>
+
+        <div class="slicer-gallery slicer-single-gallery slicer-featured-gallery">
+          <figure class="slicer-screenshot-card" data-reveal>
+            <img src="images/Capture d'écran 2026-11-02 181817.png"
+              alt="Interface de visualisation 3D ArchiPoly avec modèle, hiérarchie, outils UV et éclairage">
+            <figcaption>Inspection d’un modèle 3D avec hiérarchie, affichage UV, filaire et réglages d’éclairage.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="slicer-detail-section" id="telechargement">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <div class="section-kicker">
+            <span class="kicker-line"></span>
+            <span class="kicker-text">ARCHIPOLY STUDIO</span>
+          </div>
+          <h2 class="section-title">Télécharger et contribuer</h2>
+          <p class="section-subtitle">
+            Téléchargez ArchiPoly pour accéder rapidement à ses outils. Les installateurs sont fournis directement
+            depuis GitHub Releases.
+          </p>
+        </div>
+        <div class="transparency-actions slicer-download-actions" data-reveal>
+          <a href="https://github.com/evasseur423-oss/3D-Visualizer/releases/download/3D-visualizer-v1/3D.Visualizer.Studio.Setup.1.0.0.exe"
+            download="3D.Visualizer.Studio.Setup.1.0.0.exe" class="btn-primary-action">
+            <div class="btn-lines">
+              <span class="btn-title">Télécharger pour Windows (.exe)</span>
+              <span class="btn-sub">Windows 10 / 11 (64 bits) · Version 1.0</span>
+            </div>
+          </a>
+          <a href="https://github.com/evasseur423-oss/3D-Visualizer/releases/download/3D-visualizer-MAC/3D.Visualizer.Studio-1.0.0-arm64.dmg"
+            download="3D.Visualizer.Studio-1.0.0-arm64.dmg" class="btn-primary-action btn-mac-action">
+            <div class="btn-lines">
+              <span class="btn-title">Télécharger pour macOS (.dmg)</span>
+              <span class="btn-sub">Apple Silicon (M1/M2/M3/M4)</span>
+            </div>
+          </a>
+          <a href="https://github.com/evasseur423-oss/3D-Visualizer" target="_blank" rel="noopener noreferrer"
+            class="btn-secondary-action">
+            <div class="btn-lines">
+              <span class="btn-title">Voir le code source</span>
+              <span class="btn-sub">Dépôt GitHub 3D-Visualizer</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <a href="index.html">← Retour à ArchiPoly Studio</a>
+        <span class="meta-tag">3D VISUALIZER · ARCHIPOLY STUDIO</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
